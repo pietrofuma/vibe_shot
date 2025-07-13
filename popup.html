@@ -1,0 +1,79 @@
+<!-- popup.html (FINALE CON GUIDA COMPLETA E RAFFINATA) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vibe-shot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="main-header">
+      <!-- L'header rimane invariato -->
+      <div class="action-buttons">
+        <button id="capture-btn" class="primary">Capture</button>
+        <button id="clear-all-btn" class="danger">Clear All</button>
+      </div>
+      <div class="controls-group">
+        <div class="toggle-container">
+          <label class="toggle-switch">
+            <input type="checkbox" id="copy-remove-toggle">
+            <span class="slider"></span>
+          </label>
+          <span class="toggle-label">Copy & Remove</span>
+        </div>
+        <button id="undock-btn" class="accent icon-btn" title="Open in Window">↗</button>
+      </div>
+    </header>
+    
+    <main id="screenshots-container">
+      <!-- Screenshots will be inserted here -->
+    </main>
+
+    <footer class="main-footer">
+      <div class="footer-links">
+        <a href="#" id="help-btn" class="footer-link" title="Help">? Help</a>
+      </div>
+      <div id="limit-message" class="hidden status-bar">Limit reached</div>
+      <div class="footer-links">
+        <a href="https://ko-fi.com/pietrofumagalli" target="_blank" rel="noopener noreferrer" class="footer-link" title="Support this project on Ko-fi">❤️ Support</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ========= NUOVA GUIDA (MODAL) ========= -->
+  <div id="help-modal" class="hidden">
+    <div class="help-content">
+      <button id="close-help-btn" class="close-btn" title="Close">×</button>
+      <h2>Vibe-shot Guide</h2>
+      <p>Master Vibe-shot to supercharge your workflow. Here’s a quick look at all the features.</p>
+
+      <h3>Shortcuts & Core Workflow</h3>
+      <ul>
+        <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Y</kbd> → Start a capture. The image is <strong>instantly copied</strong> to your clipboard!</li>
+        <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> → Open this popup window.</li>
+        <li><kbd>Esc</kbd> → Cancel a capture in progress.</li>
+      </ul>
+
+      <h3>Managing Your Screenshots</h3>
+      <p>Once you open the popup, you can manage your saved shots:</p>
+      <ul>
+        <li><strong>Copy:</strong> Copies the image to your clipboard again.</li>
+        <li><strong>Remove:</strong> Deletes the screenshot permanently.</li>
+        <li><strong>Rename (✏️):</strong> Click the pencil icon to give your shot a custom, memorable name.</li>
+        <li><strong>Drag & Drop:</strong> Drag any screenshot from the popup directly to your desktop or an application to save it as a WebP file.</li>
+      </ul>
+
+      <h3>Header Controls</h3>
+      <ul>
+        <li><strong>Copy & Remove Toggle:</strong> When active, using "Copy" or dragging the image will also automatically delete it from the list. Perfect for single-use shots.</li>
+        <li><strong>Open in Window (↗):</strong> Opens this popup in a separate, persistent window so it doesn't close automatically.</li>
+        <li><strong>Clear All Button:</strong> Deletes all saved screenshots at once. You'll be asked to confirm to prevent accidents.</li>
+      </ul>
+    </div>
+  </div>
+  <!-- ======================================= -->
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Vibe-shot: take and delete screenshots",
+  "version": "1.0",
+  "description": "Capture screen areas, save them temporarily, and copy them to the clipboard.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "notifications",
+    "clipboardWrite", 
+    "offscreen",
+    "alarms" 
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon_128.png"
+  },
+  "icons": {
+     "128": "icon_128.png",
+    "48": "icon_48.png",
+    "32": "icon_32.png",
+    "16": "icon_16.png"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+I"
+      },
+      "description": "Open the Vibe-shot popup"
+    },
+    "trigger-area-capture": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      },
+      "description": "Start an area capture"
+    }
+  }
+}

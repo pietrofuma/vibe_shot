@@ -1,0 +1,343 @@
+/* style.css (VERSIONE FINALE CON UI RAFFINATA) */
+
+:root {
+  --bordo-spessore: 2px;
+  --colore-bordo-base: #1f2937;  /* Quasi nero */
+  --colore-primario: #0EA5E9;    /* Azzurro/Blu per il pulsante Cattura */
+  --colore-toggle: #10B981;      /* Verde per il toggle e altre azioni */
+  --colore-pericolo: #EF4444;    /* Rosso moderno */
+  --colore-accento: #F59E0B;     /* Giallo/Ambra moderno */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  width: 380px;
+  margin: 0;
+  background-color: #f9fafb;
+}
+
+/* --- Filosofia Spigolosa: NIENTE ANGOLI ARROTONDATI --- */
+* {
+  border-radius: 0 !important;
+}
+
+/* --- Header & Pulsanti Principali (INVARIATO) --- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: var(--bordo-spessore) solid var(--colore-bordo-base);
+}
+.action-buttons, .controls-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+button {
+  padding: 6px 12px;
+  background-color: #fff;
+  border: var(--bordo-spessore) solid var(--colore-bordo-base);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.15s ease-in-out;
+  white-space: nowrap;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: #e5e7eb;
+}
+#capture-btn {
+  background-color: var(--colore-primario);
+  border-color: var(--colore-primario);
+  color: white;
+}
+#capture-btn:hover {
+  background-color: #0284C7;
+  border-color: #0284C7;
+}
+#clear-all-btn {
+  background-color: transparent;
+  border-color: var(--colore-pericolo);
+  color: var(--colore-pericolo);
+}
+#clear-all-btn:hover {
+  background-color: var(--colore-pericolo);
+  color: white;
+}
+#clear-all-btn.confirming {
+  background-color: var(--colore-pericolo) !important;
+  color: white !important;
+}
+#undock-btn {
+  background-color: transparent;
+  border-color: var(--colore-accento);
+  color: var(--colore-accento);
+  font-size: 18px;
+  line-height: 1;
+  padding: 4px 8px;
+}
+#undock-btn:hover {
+  background-color: var(--colore-accento);
+  color: white;
+}
+.toggle-label { font-size: 12px; color: #333; font-weight: 500; }
+.toggle-switch { position: relative; display: inline-block; width: 48px; height: 26px; flex-shrink: 0; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+  background-color: transparent;
+  border: var(--bordo-spessore) solid var(--colore-toggle);
+  transition: .2s;
+}
+.slider:before {
+  position: absolute; content: "";
+  height: 18px; width: 18px;
+  left: 2px; bottom: 2px;
+  background-color: var(--colore-toggle);
+  transition: .2s;
+}
+input:checked + .slider { background-color: var(--colore-toggle); }
+input:checked + .slider:before {
+  background-color: white;
+  transform: translateX(22px);
+}
+
+/* --- Contenuto Principale: Screenshot Items (RAFFINATO) --- */
+.hidden { display: none !important; }
+
+/* MODIFICATO: Aggiunto più padding e gap per dare respiro */
+main#screenshots-container {
+  max-height: 450px; overflow-y: auto; padding: 12px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+}
+
+.screenshot-item {
+  background-color: #fff;
+  border: var(--bordo-spessore) solid var(--colore-bordo-base);
+  overflow: hidden;
+  box-shadow: 4px 4px 0px var(--colore-bordo-base);
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  display: flex; /* Aggiunto per un controllo migliore della struttura interna */
+  flex-direction: column; /* Impila gli elementi verticalmente */
+}
+.screenshot-item:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--colore-bordo-base);
+}
+.screenshot-item img { width: 100%; height: auto; display: block; }
+
+.new-item-glow {
+  animation: glow-border-animation 1.5s 3;
+}
+@keyframes glow-border-animation {
+  0%, 100% { border-color: var(--colore-bordo-base); }
+  50% { border-color: var(--colore-accento); }
+}
+
+/* --- Nome, Azioni e Rinomina (RAFFINATO) --- */
+
+/* MODIFICATO: Rimosso il bordo superiore per un look più pulito */
+.screenshot-name {
+  font-size: 11px; color: #374151; padding: 6px 8px;
+  background-color: #f3f4f6;
+  text-align: center; word-break: break-all;
+  margin-top: auto; /* Spinge questo blocco e le azioni in basso */
+}
+
+/* MODIFICATO: Rimosso il bordo superiore */
+.screenshot-item .actions {
+  display: flex; justify-content: space-around; padding: 8px; /* Più padding */
+  background-color: #fff;
+}
+
+/* MODIFICATO: I pulsanti interni ora sono più leggeri */
+.actions button {
+  width: 48%; font-size: 12px; padding: 4px;
+  border-width: 1px; /* Bordo più sottile */
+  border-color: #d1d5db; /* Bordo grigio chiaro */
+  color: #374151;
+  background-color: #fff;
+  font-weight: 600;
+}
+.actions button:hover {
+  border-color: var(--colore-bordo-base);
+  background-color: #f9fafb;
+}
+
+/* Il pulsante Rimuovi mantiene il suo colore di pericolo al passaggio del mouse */
+.actions button:nth-child(2):hover {
+  background-color: var(--colore-pericolo);
+  border-color: var(--colore-pericolo);
+  color: white;
+}
+
+.actions .rename-btn {
+  border: none; background: none; font-size: 16px; color: #6b7280;
+}
+.actions .rename-btn:hover {
+  color: var(--colore-bordo-base);
+}
+
+.rename-container { padding: 8px; display: none; background: #f3f4f6; }
+.rename-container input {
+  width: 100%; padding: 6px; box-sizing: border-box;
+  border: var(--bordo-spessore) solid var(--colore-toggle);
+}
+
+.empty-state {
+  grid-column: 1 / -1; text-align: center; color: #666; padding: 40px 0;
+  font-weight: 500;
+}
+
+
+/* --- Footer & Link di Supporto (INVARIATO) --- */
+.main-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  background-color: #f3f4f6;
+  border-top: var(--bordo-spessore) solid var(--colore-bordo-base);
+  min-height: 30px;
+}
+#limit-message {
+  padding: 6px 0;
+  margin: 0;
+  background: none;
+  text-align: center; 
+  font-size: 12px; 
+  font-weight: 600; 
+  color: var(--colore-pericolo);
+}
+.support-link a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--colore-bordo-base);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.support-link a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+.support-link a span {
+  display: flex;
+  align-items: center;
+}
+
+/* style.css (AGGIUNTA PER GUIDA E FOOTER FINALE) */
+
+/* --- Footer & Link di Supporto (RAFFINATO) --- */
+.main-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  background-color: #f3f4f6;
+  border-top: var(--bordo-spessore) solid var(--colore-bordo-base);
+  min-height: 30px;
+}
+#limit-message {
+  padding: 6px 0;
+  margin: 0;
+  background: none;
+  text-align: center; 
+  font-size: 12px; 
+  font-weight: 600; 
+  color: var(--colore-pericolo);
+}
+.footer-links {
+  display: flex;
+  gap: 10px;
+}
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--colore-bordo-base);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.footer-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* --- NUOVO: Stili per la Guida (Modal) --- */
+#help-modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.help-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px 25px;
+  border: var(--bordo-spessore) solid var(--colore-bordo-base);
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 4px 4px 0px var(--colore-bordo-base);
+}
+.close-btn {
+  color: #aaa;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.close-btn:hover,
+.close-btn:focus {
+  color: var(--colore-bordo-base);
+}
+.help-content h2 {
+  margin-top: 0;
+  color: var(--colore-bordo-base);
+}
+.help-content h3 {
+  border-bottom: var(--bordo-spessore) solid #e5e7eb;
+  padding-bottom: 5px;
+  margin-top: 25px;
+  color: var(--colore-primario);
+}
+.help-content ul {
+  padding-left: 20px;
+  list-style: none;
+}
+.help-content li {
+  margin-bottom: 10px;
+}
+kbd {
+  background-color: #e5e7eb;
+  border: 1px solid #d1d5db;
+  padding: 2px 6px;
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: bold;
+  color: #374151;
+}
