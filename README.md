@@ -58,4 +58,4 @@ We may update this Privacy Policy to reflect changes in our extension's function
 
 If you have any questions, concerns, or feedback regarding this Privacy Policy or the practices of Vibe-shot, please contact us through the support options available on the Chrome Web Store listing or by opening an issue on our project's code repository.
 
-[Link to your GitHub Repository or Support Page]
+[https://github.com/pietrofuma]
